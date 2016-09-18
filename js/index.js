@@ -14,7 +14,6 @@
     ajax.open('GET', url, true);
     ajax.responseType = 'arraybuffer';
     ajax.onload = function() {
-      alert('load');
       setTimeout(loadMjpeg, 5000);
     };
     ajax.onerror = function() {
