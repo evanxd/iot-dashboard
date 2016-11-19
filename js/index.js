@@ -1,14 +1,10 @@
 'use strict';
 
 (function() {
-  var url = null;
-  if (URLSearchParams) {
-    url = new URLSearchParams(window.location.search).get('url');
-  } else {
-    url = getURLParam('url')
-  }
+  var url = getURLParam('url');
   if (!url) {
     alert('Cannot get url param.');
+    return;
   }
 
   var viewer = document.querySelector('#viewer');
