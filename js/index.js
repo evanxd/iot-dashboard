@@ -1,8 +1,16 @@
 'use strict';
 
 (function() {
-  var params = new URLSearchParams(window.location.search);
-  var url = params.get('url');
+  var url = null;
+  if (URLSearchParams) {
+    url = new URLSearchParams(window.location.search).get('url');
+  } else {
+    url = getURLParam('url')
+  }
+  if (!url) {
+    alert('Cannot get url param.');
+  }
+
   var viewer = document.querySelector('#viewer');
 
   loadMjpeg();
@@ -22,3 +30,8 @@
     ajax.send();
   }
 }());
+
+function getURLParam(param) {
+  var params = window.location.search.match(new RegExp('(?:[\?\&]' + param + '=)([^&]+)'));
+  return params ? params[1] : null;
+}
