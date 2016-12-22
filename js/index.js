@@ -1,33 +1,23 @@
 'use strict';
 
 (function() {
-  var url = getURLParam('url');
-  if (!url) {
-    alert('Cannot get url param.');
+  var url = new Url(window.location.search);
+  if (!url.query.urls) {
+    alert('Cannot get url or urls param.');
     return;
   }
 
   var viewer = document.querySelector('#viewer');
 
-  loadMjpeg();
+  addMjpeg(url.query.urls);
 
-  function loadMjpeg() {
-    viewer.setAttribute('src', url);
-    // Workaround to reload MJPEG stream when it's disconnected.
-    var ajax = new XMLHttpRequest();
-    ajax.open('GET', url, true);
-    ajax.responseType = 'arraybuffer';
-    ajax.onload = function() {
-      setTimeout(loadMjpeg, 5000);
-    };
-    ajax.onerror = function() {
-      setTimeout(loadMjpeg, 5000);
-    };
-    ajax.send();
+  function addMjpeg(urls) {
+    urls = Array.isArray(urls) ? urls : [urls];
+    urls.forEach(function(url, i) {
+      var img = document.createElement('img');
+      img.setAttribute('id', 'mjpeg-' + (i + 1));
+      img.setAttribute('src', url);
+      viewer.appendChild(img);
+    });
   }
 }());
-
-function getURLParam(param) {
-  var params = window.location.search.match(new RegExp('(?:[\?\&]' + param + '=)([^&]+)'));
-  return params ? params[1] : null;
-}

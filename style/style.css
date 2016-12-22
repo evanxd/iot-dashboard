@@ -14,3 +14,14 @@ body {
 #viewer {
   height: 100%;
 }
+
+#mjpeg-1 {
+  height: 100%;
+}
+
+#mjpeg-2 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 50%;
+}
