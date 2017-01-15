@@ -1,23 +1,25 @@
 'use strict';
 
 (function() {
-  var url = new Url(window.location.search);
-  if (!url.query.urls) {
+  var urls = new Url(window.location.search).query.urls;
+  if (!urls) {
     alert('Cannot get urls param.');
     return;
+  } else {
+    urls = Array.isArray(urls) ? urls : [urls];
   }
-
   var viewer = document.querySelector('#viewer');
 
-  addMjpeg(url.query.urls);
-
-  function addMjpeg(urls) {
-    urls = Array.isArray(urls) ? urls : [urls];
-    urls.forEach(function(url, i) {
-      var img = document.createElement('img');
-      img.setAttribute('id', 'mjpeg-' + (i + 1));
-      img.setAttribute('src', url);
-      viewer.appendChild(img);
-    });
-  }
+  urls.forEach(function(url, i) {
+    var image = new Image();
+    var id = 'mjpeg-' + (i + 1);
+    image.onerror = function() {
+      setTimeout(function() {
+        addMjpeg(url, id);
+      }, 10000);
+    };
+    image.setAttribute('id', id);
+    image.setAttribute('src', url);
+    viewer.appendChild(image);
+  });
 }());
