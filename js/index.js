@@ -3,7 +3,7 @@
 (function() {
   var url = new Url(window.location.search);
   if (!url.query.urls) {
-    alert('Cannot get url or urls param.');
+    alert('Cannot get urls param.');
     return;
   }
 
