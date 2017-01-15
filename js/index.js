@@ -15,7 +15,7 @@
     var id = 'mjpeg-' + (i + 1);
     image.onerror = function() {
       setTimeout(function() {
-        addMjpeg(url, id);
+        image.setAttribute('src', url);
       }, 10000);
     };
     image.setAttribute('id', id);
