@@ -10,7 +10,7 @@
   var viewer = document.querySelector('#viewer');
 
   urls.forEach(function(_url, i) {
-    var id = 'mjpeg-' + (i + 1);
+    var id = 'widget-' + (i + 1);
     if ('html'.includes(url('fileext', _url))) {
       var iframe = document.createElement('iframe');
       iframe.setAttribute('id', id);

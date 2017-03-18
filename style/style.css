@@ -15,18 +15,18 @@ body {
   height: 100%;
 }
 
-#mjpeg-1 {
+#widget-1 {
   height: 100%;
 }
 
-#mjpeg-2 {
+#widget-2 {
   position: absolute;
   top: 0;
   right: 0;
   width: 50%;
 }
 
-#mjpeg-3 {
+#widget-3 {
   position: absolute;
   bottom: 0;
   left: 0;
