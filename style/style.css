@@ -25,3 +25,11 @@ body {
   right: 0;
   width: 50%;
 }
+
+#mjpeg-3 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+}
