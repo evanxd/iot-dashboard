@@ -36,7 +36,7 @@
       }, CHECK_INTERVAL);
 
       image.setAttribute('id', id);
-      image.setAttribute('src', url);
+      image.setAttribute('src', _url);
       viewer.appendChild(image);
     }
   });
