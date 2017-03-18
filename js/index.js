@@ -2,47 +2,42 @@
 
 (function() {
   var CHECK_INTERVAL = 10000;
-  var urls = new Url(window.location.search).query.urls;
+  var urls = url('?urls');
   if (!urls) {
     alert('Cannot get urls param.');
     return;
-  } else {
-    urls = Array.isArray(urls) ? urls : [urls];
   }
   var viewer = document.querySelector('#viewer');
 
-  urls.forEach(function(url, i) {
+  urls.forEach(function(_url, i) {
     var id = 'mjpeg-' + (i + 1);
-    // Workaround to append image and iframe elements.
-    // Need to figure out how to detect the mime type to fix it.
-    if (i < 2) {
+    if ('html'.includes(url('fileext', _url))) {
+      var iframe = document.createElement('iframe');
+      iframe.setAttribute('id', id);
+      iframe.setAttribute('src', _url);
+      iframe.setAttribute('frameborder', 0);
+      iframe.setAttribute('scrolling', 'no');
+      viewer.appendChild(iframe);
+    } else {
       var image = new Image();
       var isImageActive = false;
 
       image.onload = function() {
         isImageActive = true;
       };
-      setInterval(function() {
-        !isImageActive && image.setAttribute('src', url);
-        isImageActive = false;
-      }, CHECK_INTERVAL);
-
       image.onerror = function() {
         setTimeout(function() {
-          image.setAttribute('src', url);
+          image.setAttribute('src', _url);
         }, CHECK_INTERVAL);
       };
+      setInterval(function() {
+        !isImageActive && image.setAttribute('src', _url);
+        isImageActive = false;
+      }, CHECK_INTERVAL);
 
       image.setAttribute('id', id);
       image.setAttribute('src', url);
       viewer.appendChild(image);
-    } else {
-      var iframe = document.createElement('iframe');
-      iframe.setAttribute('id', id);
-      iframe.setAttribute('src', url);
-      iframe.setAttribute('frameborder', 0);
-      iframe.setAttribute('scrolling', 'no');
-      viewer.appendChild(iframe);
     }
   });
 }());
