@@ -4,8 +4,8 @@
 (function() {
   var widgetUrls = url('?widgets');
   if (!widgetUrls) {
-    alert('Cannot get the widgets param.');
-    return;
+    alert('Cannot get the widgets param.\nWill show default MJPEG images.');
+    widgetUrls = ['http://59.125.198.2/T26-38K+500', 'http://59.125.198.2/T26-31K+100'];
   }
   var viewer = document.querySelector('body');
 
