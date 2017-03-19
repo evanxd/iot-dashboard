@@ -2,14 +2,14 @@
 'use strict';
 
 (function() {
-  var urls = url('?urls');
-  if (!urls) {
-    alert('Cannot get urls param.');
+  var widgetUrls = url('?widgets');
+  if (!widgetUrls) {
+    alert('Cannot get the widgets param.');
     return;
   }
   var viewer = document.querySelector('body');
 
-  urls.forEach(function(_url, i) {
+  widgetUrls.forEach(function(_url, i) {
     var id = 'widget-' + (i + 1);
     if ('html'.includes(url('fileext', _url))) {
       var iframe = document.createElement('iframe');
