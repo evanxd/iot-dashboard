@@ -1,3 +1,4 @@
+/* global url */
 'use strict';
 
 (function() {
