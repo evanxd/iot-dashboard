@@ -1,2 +1,2 @@
 # IoT Dashboard
-A IoT dashboard.
+An IoT dashboard.
