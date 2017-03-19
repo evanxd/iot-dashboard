@@ -1,7 +1,6 @@
 'use strict';
 
 (function() {
-  var CHECK_INTERVAL = 10000;
   var urls = url('?urls');
   if (!urls) {
     alert('Cannot get urls param.');
@@ -25,15 +24,11 @@
       image.onload = function() {
         isImageActive = true;
       };
-      image.onerror = function() {
-        setTimeout(function() {
-          image.setAttribute('src', _url);
-        }, CHECK_INTERVAL);
-      };
+      // Check mjpeg images per 10 minutes. If unalive, load it again.
       setInterval(function() {
         !isImageActive && image.setAttribute('src', _url);
         isImageActive = false;
-      }, CHECK_INTERVAL);
+      }, 10000);
 
       image.setAttribute('id', id);
       image.setAttribute('src', _url);
