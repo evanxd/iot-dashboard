@@ -6,7 +6,7 @@
     alert('Cannot get urls param.');
     return;
   }
-  var viewer = document.querySelector('#viewer');
+  var viewer = document.querySelector('body');
 
   urls.forEach(function(_url, i) {
     var id = 'widget-' + (i + 1);
