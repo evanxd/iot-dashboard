@@ -1,2 +1,2 @@
-# mjpeg-viewer
-A Web-based Motion JPEG viewer.
+# IoT Dashboard
+A IoT dashboard.
